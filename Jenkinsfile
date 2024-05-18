@@ -11,12 +11,12 @@ pipeline {
         }
         stage('Git Checkout') {
             steps {
-                echo 'Hello World'
+                echo 'git clone https://github.com/harishk97/Minikube-SpringApp.git '
             }
         }
         stage('Maven Stage') {
             steps {
-                echo 'Hello World'
+                echo 'mvn -version'
             }
         }
         stage('Nexus Push') {
