@@ -5,6 +5,8 @@ pipeline {
         stage('cleanWS') {
             steps {
                 echo 'Hello World'
+                cleanWs()
+                echo "Building ${env.JOB_NAME}..."
             }
         }
         stage('Git Checkout') {
