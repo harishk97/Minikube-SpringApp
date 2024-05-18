@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Maven Stage') {
             steps {
-                echo 'mvn -version'
+                sh 'mvn -version'
             }
         }
         stage('Nexus Push') {
