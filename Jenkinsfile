@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    tools{
+        jdk 'jdk17'
+        maven 'maven3'
+    }
+
 
     stages {
         stage('cleanWS') {
@@ -21,13 +26,13 @@ pipeline {
                 sh 'mvn package'
             }
         }
-        // stage('Nexus Push') {
-        //     steps {
-        //         withCredentials([usernamePassword(credentialsId: 'nexus-admin-cred', passwordVariable: 'NEXUS_PASSWORD', usernameVariable: 'NEXUS_USER')]) {
-        //             sh """mvn deploy-Dnexus.username=${NEXUS_USER} -Dnexus.password=${NEXUS_PASSWORD} """
-        //         }
-        //     }
-        // }
+         stage('Nexus Push') {
+             steps {
+                 withMaven(globalMavenSettingsConfig: 'global-settings', jdk: 'jdk17', maven: 'maven3', mavenSettingsConfig: '', traceability: true) {
+                    sh "mvn deploy -X"
+                }
+             }
+         }
         stage('Docker Build and Push') {
             steps{
             withDockerRegistry(credentialsId: 'nexus-admin-cred', url: 'http://localhost:8083/repository/docker-private/'){
