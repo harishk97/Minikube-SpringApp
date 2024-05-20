@@ -29,7 +29,7 @@ pipeline {
          stage('Nexus Push') {
              steps {
                  withMaven(globalMavenSettingsConfig: 'global-settings', jdk: 'jdk17', maven: 'maven3', mavenSettingsConfig: '', traceability: true) {
-                    sh "mvn clean deploy:deploy-file -Dfile=target/*.jar -Durl=http://localhost:8081/repository/maven-releases/"
+                    sh "mvn clean deploy:deploy-file -Dfile=target/Minikube.deploy-0.0.1-SNAPSHOT.jar -Durl=http://localhost:8081/repository/maven-releases/"
                 }
              }
          }
