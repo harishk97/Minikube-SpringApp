@@ -29,7 +29,7 @@ pipeline {
          stage('Nexus Push') {
              steps {
                  withMaven(globalMavenSettingsConfig: 'global-settings', jdk: 'jdk17', maven: 'maven3', mavenSettingsConfig: '', traceability: true) {
-                    sh "mvn deploy -X"
+                    sh "mvn clean deploy -X"
                 }
              }
          }
