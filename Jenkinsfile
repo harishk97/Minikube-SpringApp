@@ -24,11 +24,7 @@ pipeline {
         stage('Nexus Push') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus-cred', passwordVariable: 'NEXUS_PWD', usernameVariable: 'NEXUS_USER')]) {
-                    sh """
-                        mvn deploy \ 
-                        -DaltDeploymentRepository=nexus::default::http://localhost:8081/repository/maven-releases/ \
-                        -Dnexus.username=${NEXUS_USER} \
-                        -Dnexus.password=${NEXUS_PASSWORD} """
+                    sh """mvn deploy -DaltDeploymentRepository=nexus::default::http://localhost:8081/repository/maven-releases/ -Dnexus.username=${NEXUS_USER} -Dnexus.password=${NEXUS_PASSWORD} """
                 }
             }
         }
