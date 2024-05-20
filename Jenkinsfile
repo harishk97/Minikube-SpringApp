@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Docker Build and Push') {
             steps{
-            withDockerRegistry(credentialsId: 'nexus-admin-cred', toolName: 'docker', url: 'http://localhost:8081/repository/docker-private/'){
+            withDockerRegistry(credentialsId: 'nexus-admin-cred', url: 'http://localhost:8081/repository/docker-private/'){
                 sh 'docker build -t localhost:8083/spring-app .'
                 sh 'docker push localhost:8083/spring-app'
                 }
