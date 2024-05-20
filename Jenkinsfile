@@ -17,13 +17,13 @@ pipeline {
         stage('Maven Stage') {
             steps {
                 sh 'mvn -version'
-                sh 'mvn clean install'
-                sh 'mvn package'
+                //sh 'mvn clean install'
+                //sh 'mvn package'
             }
         }
         stage('Nexus Push') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'nexus-cred', passwordVariable: 'NEXUS_PASSWORD', usernameVariable: 'NEXUS_USER')]) {
+                withCredentials([usernamePassword(credentialsId: 'nexus-admin-cred', passwordVariable: 'NEXUS_PASSWORD', usernameVariable: 'NEXUS_USER')]) {
                     sh """mvn deploy -DaltDeploymentRepository=nexus::default::http://localhost:8081/repository/maven-releases/ -Dnexus.username=${NEXUS_USER} -Dnexus.password=${NEXUS_PASSWORD} """
                 }
             }
