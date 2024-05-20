@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Git Checkout') {
             steps {
-                echo 'git clone https://github.com/harishk97/Minikube-SpringApp.git '
+                sh 'git clone https://github.com/harishk97/Minikube-SpringApp.git '
             }
         }
         stage('Maven Stage') {
