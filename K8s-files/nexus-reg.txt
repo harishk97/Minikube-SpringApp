@@ -1,0 +1,6 @@
+Run this cmd to make minikube pull image from our repo
+kubectl create secret docker-registry nexus-secret \
+    --docker-server=localhost:8083 \
+    --docker-username={add your name}} \
+    --docker-password={user.pwd}) \
+    --docker-email=admin@admin.com

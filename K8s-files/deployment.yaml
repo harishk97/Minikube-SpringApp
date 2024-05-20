@@ -17,4 +17,6 @@ spec:
           image: localhost:8083/spring-app:latest
           ports:
             - containerPort: 9090
+      imagePullSecrets:
+        - name: nexus-secret
     
