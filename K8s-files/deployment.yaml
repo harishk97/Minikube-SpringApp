@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: minikube
-          image: harry997/minikube-spring-app
+          image: localhost:8083/spring-app:latest
           ports:
             - containerPort: 9090
     
