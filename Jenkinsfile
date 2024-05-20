@@ -38,7 +38,7 @@ pipeline {
         }
         stage('Kubernetes Stage') {
             steps {
-                kubeconfig(credentialsId: 'k8s-cred', serverUrl: 'https://192.168.49.2:8443') {
+                withKubeConfig(caCertificate: '', clusterName: 'minikube', contextName: '', credentialsId: 'k8s-cred', namespace: '', restrictKubeConfigAccess: false, serverUrl: 'https://192.168.49.2:8443') {
                     sh "kubectl get pods"
                 }
             }
