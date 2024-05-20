@@ -29,7 +29,7 @@ pipeline {
          stage('Nexus Push') {
              steps {
                  withMaven(globalMavenSettingsConfig: 'global-settings', jdk: 'jdk17', maven: 'maven3', mavenSettingsConfig: '', traceability: true) {
-                    sh "mvn clean deploy -X"
+                    sh "mvn clean deploy:deploy-file -Dpackaging=jar"
                 }
              }
          }
@@ -41,12 +41,12 @@ pipeline {
                 }
             }
         }
-        stage('Kubernetes Stage') {
-            steps {
-                withKubeConfig(caCertificate: '', clusterName: 'minikube', contextName: '', credentialsId: 'k8s-cred', namespace: '', restrictKubeConfigAccess: false, serverUrl: 'https://192.168.49.2:8443') {
-                    sh "kubectl get pods"
-                }
-            }
-        }
+        // stage('Kubernetes Stage') {
+        //     steps {
+        //         withKubeConfig(caCertificate: '', clusterName: 'minikube', contextName: '', credentialsId: 'k8s-cred', namespace: '', restrictKubeConfigAccess: false, serverUrl: 'https://192.168.49.2:8443') {
+        //             sh "kubectl get pods"
+        //         }
+        //     }
+        // }
     }
 }
