@@ -21,13 +21,13 @@ pipeline {
                 sh 'mvn package'
             }
         }
-        stage('Nexus Push') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'nexus-admin-cred', passwordVariable: 'NEXUS_PASSWORD', usernameVariable: 'NEXUS_USER')]) {
-                    sh """mvn deploy -DaltDeploymentRepository=nexus::default::http://localhost:8081/repository/maven-releases/ -Dnexus.username=${NEXUS_USER} -Dnexus.password=${NEXUS_PASSWORD} """
-                }
-            }
-        }
+        // stage('Nexus Push') {
+        //     steps {
+        //         withCredentials([usernamePassword(credentialsId: 'nexus-admin-cred', passwordVariable: 'NEXUS_PASSWORD', usernameVariable: 'NEXUS_USER')]) {
+        //             sh """mvn deploy-Dnexus.username=${NEXUS_USER} -Dnexus.password=${NEXUS_PASSWORD} """
+        //         }
+        //     }
+        // }
         stage('Docker Build and Push') {
             steps{
             withDockerRegistry(credentialsId: 'nexus-admin-cred', url: 'http://localhost:8081/repository/docker-private/'){
