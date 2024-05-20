@@ -47,12 +47,13 @@ pipeline {
             steps {
                 withKubeConfig(caCertificate: '', clusterName: 'minikube', contextName: '', credentialsId: 'k8s-cred', namespace: '', restrictKubeConfigAccess: false, serverUrl: 'https://192.168.49.2:8443') {
                     sh "kubectl get pods"
-                     sh "sleep 5"
+                    sh "sleep 5"
                     sh "kubectl apply -f K8s-files"
+                    sh "sleep 15"
                     sh "kubectl get pods"
                     sh "kubectl get svc"
-                    sh "minikube ip"
-                    sh "minikube service app-service --url"
+                    //sh "minikube ip"
+                    //sh "minikube service app-service --url"
                 }
             }
         }
