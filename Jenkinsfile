@@ -29,7 +29,7 @@ pipeline {
          stage('Nexus Push') {
              steps {
                  withMaven(globalMavenSettingsConfig: 'global-settings', jdk: 'jdk17', maven: 'maven3', mavenSettingsConfig: '', traceability: true) {
-                    sh "mvn clean deploy:deploy-file -Dpackaging=jar"
+                    sh "mvn clean deploy:deploy-file -Dpackaging=jar -Durl=http://localhost:8081/repository/maven-releases/"
                 }
              }
          }
