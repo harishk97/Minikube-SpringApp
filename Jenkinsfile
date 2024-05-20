@@ -43,12 +43,15 @@ pipeline {
                 }
             }
         }
-        stage('Kubernetes Stage') {
+        stage('Kubernetes Deploy') {
             steps {
                 withKubeConfig(caCertificate: '', clusterName: 'minikube', contextName: '', credentialsId: 'k8s-cred', namespace: '', restrictKubeConfigAccess: false, serverUrl: 'https://192.168.49.2:8443') {
                     sh "kubectl get pods"
                     sh "sleep 5"
                     sh "kubectl create -f K8s-files"
+                    sh "kubectl get svc"
+                    sh "minikube ip"
+                    sh "minikube service app-service --url"
                 }
             }
         }
