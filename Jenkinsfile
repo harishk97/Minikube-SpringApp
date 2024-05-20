@@ -5,15 +5,15 @@ pipeline {
         stage('cleanWS') {
             steps {
                 echo 'Hello World'
-                cleanWs()
+               // cleanWs()
                 echo "Building ${env.JOB_NAME}..."
             }
         }
-        stage('Git Checkout') {
-            steps {
-                sh 'git clone https://github.com/harishk97/Minikube-SpringApp.git '
-            }
-        }
+        // stage('Git Checkout') {
+        //     steps {
+        //         sh 'git clone https://github.com/harishk97/Minikube-SpringApp.git '
+        //     }
+        // }
         stage('Maven Stage') {
             steps {
                 sh 'mvn -version'
